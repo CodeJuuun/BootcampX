@@ -1,7 +1,7 @@
 -- assignment table
-CREATE TABLE assignment (
+CREATE TABLE assignments (
   id SERIAL PRIMARY KEY NOT NULL,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(255),
   content TEXT,
   day INTEGER,
   chapter INTEGER,
@@ -11,8 +11,8 @@ CREATE TABLE assignment (
 -- assignment submissions table
 CREATE TABLE assignment_submissions (
   id SERIAL PRIMARY KEY NOT NULL,
-  assignment_id INTEGER
-  student_id INTEGER,
-  duration INTEGER
-  submissions DATE
-)
+  assignment_id INTEGER REFERENCES assignments(id) ON DELETE CASCADE,
+  student_id INTEGER REFERENCES students(id) ON DELETE CASCADE,
+  duration INTEGER,
+  submission_date DATE
+);
